@@ -23,9 +23,16 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     // Optionally, you can send a message to a specific channel
     dpp::message msg (BEN_CHANNEL_ID, "");
     msg.add_file("ben.jpg", dpp::utility::read_file("ben.jpg"));
+    int counter;
     while(true) {
              
       bot.message_create(msg);
+      counter++;
+      if (counter % 10 == 0) {
+        dpp::message countermsg (BEN_CHANNEL_ID, "Sent " + std::to_string(counter) + " times.");
+        std::cout << "Sent ben quadinaros " << counter << " times. \n" << std::endl;
+        bot.message_create(countermsg);
+      }
       std::this_thread::sleep_for(std::chrono::seconds(7));;
         // Wait for a while before sending the next message
         }

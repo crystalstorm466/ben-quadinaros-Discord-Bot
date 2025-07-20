@@ -60,6 +60,7 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     
       counter++;
       writeCounter(counter);
+      bot.set_presence(dpp::presence(dpp::ps_online, dpp::activity_type::at_custom, "Sent ben quadinaros " + std::to_string(counter) + " times!"));
       if (counter % 10 == 0) {
         dpp::message countermsg (BEN_CHANNEL_ID, "Sent " + std::to_string(counter) + " times.");
         std::cout << "Sent ben quadinaros " << counter << " times. \n" << std::endl;

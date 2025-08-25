@@ -1,0 +1,7 @@
+--2025-08-24 22:38:46--  https://cdn.discordapp.com/attachments/1282885107824459779/1409334719623073924/image-7.png?ex=68ad00bd
+Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
+Resolving cdn.discordapp.com (cdn.discordapp.com)... 162.159.134.233, 162.159.130.233, 162.159.135.233, ...
+Connecting to cdn.discordapp.com (cdn.discordapp.com)|162.159.134.233|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2025-08-24 22:38:46 ERROR 404: Not Found.
+

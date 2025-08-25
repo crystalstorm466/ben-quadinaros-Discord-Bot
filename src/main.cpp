@@ -52,7 +52,7 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     // Optionally, you can send a message to a specific channel
     dpp::message msg (BEN_CHANNEL_ID, "");
     msg.add_file("ben.jpg", dpp::utility::read_file("ben.jpg"));
-    
+    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
     while(true) {
       
       bot.message_create(msg);

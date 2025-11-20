@@ -52,8 +52,8 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     // Optionally, you can send a message to a specific channel
     dpp::message msg (BEN_CHANNEL_ID, "");
     msg.add_file("ben.jpg", dpp::utility::read_file("ben.jpg"));
-    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
-    while(true) {
+//    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
+      while(true) {
       
       bot.message_create(msg);
        
@@ -62,18 +62,18 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
       writeCounter(counter);
       bot.set_presence(dpp::presence(dpp::ps_online, dpp::activity_type::at_custom, "Sent ben quadinaros " + std::to_string(counter) + " times!"));
 
-      if (counter == 1000000) {
-        dpp::message countermsg (BEN_CHANNEL_ID, "@everyone 1 MILLION BEN QUADINAROS!!!!" );
+      if (counter % 1000000 == 0) {
+        dpp::message countermsg (BEN_CHANNEL_ID, "@everyone 1 MILLION MORE BEN QUADINAROS!!!!" );
         bot.message_create(countermsg);
         std::this_thread::sleep_for(std::chrono::seconds(20));
         continue;
       }
       if (counter % 10 == 0) {
         dpp::message countermsg (BEN_CHANNEL_ID, "Sent " + std::to_string(counter) + " times.");
-        std::cout << "Sent ben quadinaros " << counter << " times. \n" << std::endl;
+        std::cout << "Sent ben quadinaros " << counter << " times." << std::endl;
         bot.message_create(countermsg);
       }
-      std::this_thread::sleep_for(std::chrono::seconds(7));;
+     std::this_thread::sleep_for(std::chrono::seconds(7));;
         // Wait for a while before sending the next message
         }
 }

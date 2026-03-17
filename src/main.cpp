@@ -1,21 +1,16 @@
 #include <dpp/dpp.h> // Includes most common DPP headers
 #include <dpp/message.h>
 
-#include <cstdlib> // For std::getenv
-#include <filesystem>
+#include <cstdlib> // For std::getline 
 #include <fstream> // Potentially for future config file reading
 #include <iostream>
 #include <string>
-#include <unordered_map>
-#include <vector>
-#include <algorithm>
-#include <iomanip>
-#include <ctime>
+
 #include <thread>
 #include <chrono>
 
-static std::string BOT_TOKEN = std::getenv("SPAM_BOT_TOKEN");
-const dpp::snowflake BEN_CHANNEL_ID = 1378103577196761238;
+static std::string BOT_TOKEN = std::getenv("2150TOKEN");
+const dpp::snowflake BEN_CHANNEL_ID = 1483515571785039942;
 
 int readCounter() {
   std::ifstream readCounter("counter.txt");
@@ -51,7 +46,7 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
         int counter = readCounter();
     // Optionally, you can send a message to a specific channel
     dpp::message msg (BEN_CHANNEL_ID, "");
-    msg.add_file("ben.jpg", dpp::utility::read_file("ben.jpg"));
+    msg.add_file("ben.jpg", dpp::utility::read_file("2150.gif"));
 //    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
       while(true) {
       
@@ -60,20 +55,20 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     
       counter++;
       writeCounter(counter);
-      bot.set_presence(dpp::presence(dpp::ps_online, dpp::activity_type::at_custom, "Sent ben quadinaros " + std::to_string(counter) + " times!"));
+      bot.set_presence(dpp::presence(dpp::ps_online, dpp::activity_type::at_custom, "Sent 2150 " + std::to_string(counter) + " times!"));
 
       if (counter % 1000000 == 0) {
-        dpp::message countermsg (BEN_CHANNEL_ID, "@everyone 1 MILLION MORE BEN QUADINAROS!!!!" );
+        dpp::message countermsg (BEN_CHANNEL_ID, "@everyone 1 MILLION 2150!!!!" );
         bot.message_create(countermsg);
         std::this_thread::sleep_for(std::chrono::seconds(20));
         continue;
       }
       if (counter % 10 == 0) {
         dpp::message countermsg (BEN_CHANNEL_ID, "Sent " + std::to_string(counter) + " times.");
-        std::cout << "Sent ben quadinaros " << counter << " times." << std::endl;
+        std::cout << "Sent 2150 " << counter << " times." << std::endl;
         bot.message_create(countermsg);
       }
-     std::this_thread::sleep_for(std::chrono::seconds(7));;
+     std::this_thread::sleep_for(std::chrono::seconds(60));;
         // Wait for a while before sending the next message
         }
 }

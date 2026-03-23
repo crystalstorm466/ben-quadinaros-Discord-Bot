@@ -86,7 +86,7 @@ void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
       while(true) {
           change_img();
           dpp::message msg (BEN_CHANNEL_ID, "");
-          msg.add_file("ben.jpg", dpp::utility::read_file("ben_rand.jpg"));
+          msg.add_file("ben_rand.jpg", dpp::utility::read_file("ben_rand.jpg"));
           
       bot.message_create(msg);
        

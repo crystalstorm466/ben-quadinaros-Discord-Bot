@@ -58,10 +58,10 @@ void change_img() {
 
   int ok = stbi_info("ben.jpg", &width, &height, &channels);
   if (!ok) {
-      return
+      return;
   }  
   srand(time(NULL));
-  unsigned char* img = stdbi_load("ben.jpg", &width, &height, &channels, 4);
+  unsigned char* img = stbi_load("ben.jpg", &width, &height, &channels, 4);
   if (!img) return;
   int x = rand() % width;
   int y = rand() % height;

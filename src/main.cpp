@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream> // Potentially for future config file reading
 #include <iostream>
+#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -13,6 +14,11 @@
 #include <ctime>
 #include <thread>
 #include <chrono>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "../include/stb_image.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "../include/stb_image_write.h"
 
 static std::string BOT_TOKEN = std::getenv("SPAM_BOT_TOKEN");
 const dpp::snowflake BEN_CHANNEL_ID = 1378103577196761238;
@@ -45,16 +51,43 @@ void writeCounter(int counter) {
     return;
   }
 }
+
+void change_img() {
+
+  int width, height, channels;
+
+  int ok = stbi_info("ben.jpg", &width, &height, &channels);
+  if (!ok) {
+      return
+  }  
+  srand(time(NULL));
+  unsigned char* img = stdbi_load("ben.jpg", &width, &height, &channels, 4);
+  if (!img) return;
+  int x = rand() % width;
+  int y = rand() % height;
+
+  int index = (y * width + x ) * channels;
+  img[index + 0] = rand() % 256; //R
+  img[index + 1] = rand() % 256;// G
+  img[index + 2] = rand() % 256; // B 
+  img[index + 3] = rand() % 256; // opacity  
+
+  stbi_write_png("ben_rand.jpg", width, height, 4, img, width * 4);
+  stbi_image_free(img);
+    
+  
+}
 void on_ready_handler(dpp::cluster &bot, const dpp::ready_t &event) {
     // This function is called when the bot is ready
     std::cout << "Bot is ready! Logged in as " << bot.me.username << std::endl;
         int counter = readCounter();
     // Optionally, you can send a message to a specific channel
-    dpp::message msg (BEN_CHANNEL_ID, "");
-    msg.add_file("ben.jpg", dpp::utility::read_file("ben.jpg"));
-//    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
+  //    msg.add_file("silksong.png", dpp::utility::read_file("silksong.png"));    
       while(true) {
-      
+          change_img();
+          dpp::message msg (BEN_CHANNEL_ID, "");
+          msg.add_file("ben.jpg", dpp::utility::read_file("ben_rand.jpg"));
+          
       bot.message_create(msg);
        
     
